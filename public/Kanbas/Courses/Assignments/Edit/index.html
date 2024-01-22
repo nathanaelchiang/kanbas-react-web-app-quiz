@@ -1,0 +1,44 @@
+<select>
+    <option value="SpeedGrader" selected>SpeedGrader</option>
+</select><hr>
+<h2>Assignment Name</h2>
+<form id="text-fields">
+    <input type="text" value="A1 - ENV + HTML"></br></br>
+    <textarea cols="25" rows="2">This is the assignment description.</textarea><br/></br>
+    <label for="assignmentPoints">Points</label><br/>
+    <input id="assignmentPoints" type="number" value="100"></br></br>
+    <label>Assignment Group</label><br/>
+    <select>
+        <option value="ASSIGNMENTS" selected>ASSIGNMENTS</option>
+    </select><br/><br/>
+    <label>Display Grade as</label><br/>
+    <select>
+        <option value="Percentage" selected>Percentage</option>
+    </select><br/></br>
+    <label>Submission Type</label><br/>
+    <select>
+        <option value="Online" selected>Online</option>
+    </select><br/><br/>
+    <label>Online Entry Options</label><br/>
+    <input type="checkbox" value="Text Entry" name="text-entry" id="chkbox-text-entry">
+    <label for="chkbox-text-entry">Text Entry</label><br/>
+    <input type="checkbox" value="Website URL" name="website-url" id="chkbox-website-url">
+    <label for="chkbox-website-url">Website URL</label><br/>
+    <input type="checkbox" value="Media Recordings" name="media-recordings" id="chkbox-media-recordings">
+    <label for="chkbox-media-recordings">Media Recordings</label><br/>
+    <input type="checkbox" value="Student Annotation" name="student-annotation" id="chkbox-student-annotation">
+    <label for="chkbox-student-annotation">Student Annotation</label><br/>
+    <input type="checkbox" value="File Uploads" name="file-uploads" id="chkbox-file-uploads">
+    <label for="chkbox-file-uploads">File Uploads</label><br/><br/><br/>
+    <text>Assign</text><br/>
+    <label for="Everyone" id="everyoneLabel">Assign to</label><br/>
+    <input type="text" value="Everyone" id="Everyone"><br/><br/>
+    <label for="date-due">Due</label><br/>
+    <input type="date" id="date-due" value="2021-01-01"><br/><br/>
+    <label for="date-available">Available from</label><br/>
+    <input type="date" id="date-available" value="2021-01-01"><br/><br/>
+    <label for="date-until">Until</label><br/>
+    <input type="date" id="date-until" value="2021-01-01"><br/><br/>
+    <button type="button">Cancel</button>
+    <button type="button">Save</button>
+</form>
