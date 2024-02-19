@@ -12,6 +12,7 @@ function Courses() {
   const course = courses.find((course) => course._id === courseId);
   const location = useLocation();
 
+  const isHomeRoute = location.pathname.includes('/Home');
   const isModulesRoute = location.pathname.includes('/Modules');
   const isPiazzaRoute = location.pathname.includes('/Piazza');
   const isGradesRoute = location.pathname.includes('/Grades');
@@ -21,13 +22,14 @@ function Courses() {
     <div>
       <h1>
         <Breadcrumb>
-          <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/Dashbboard" }}>
+          <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/Kanbas/Dashboard" }}>
             <HiMiniBars3 /> Courses
           </Breadcrumb.Item>
-          <Breadcrumb.Item linkAs={Link} linkProps={{ to: `/Courses/${course?._id}` }}>
+          <Breadcrumb.Item linkAs={Link} linkProps={{ to: `/Kanbas/Courses/${course?._id}/Home` }}>
             {course?.name}
           </Breadcrumb.Item>
           <Breadcrumb.Item active>
+            {isHomeRoute && 'Home'}
             {isModulesRoute && 'Modules'}
             {isPiazzaRoute && 'Piazza'}
             {isGradesRoute && 'Grades'}
