@@ -1,0 +1,31 @@
+.homeContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+}
+
+.moduleList {
+    flex: 3;
+}
+
+.status {
+    flex: 1;
+    margin-left: 30px;
+    justify-content: flex-start;
+}
+
+.status ul {
+    padding: 0; 
+    list-style: none;
+}
+
+.status ul a {
+    margin-bottom: 10px;
+    text-decoration: none; 
+    color: red;
+}
+
+.moduleButton {
+    background-color: red;
+    color: white;
+  }

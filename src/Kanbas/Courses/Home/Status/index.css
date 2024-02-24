@@ -1,0 +1,28 @@
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.buttons button {
+    margin-bottom: 10px;
+    white-space: nowrap; 
+    min-width: 250px; 
+    text-align: left;
+}
+
+.buttonContainer button:hover {
+    background-color: darkgray;
+}
+
+.todo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.todo a {
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: red;
+}
