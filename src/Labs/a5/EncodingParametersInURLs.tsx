@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+const API_BASE = process.env.REACT_APP_API_BASE;
 
 function EncodingParametersInURLs() {
   const [a, setA] = useState(34);
@@ -46,7 +47,7 @@ function EncodingParametersInURLs() {
         Fetch Substraction of {a} - {b}
       </button>
       <h3>Path Parameters</h3>
-      <a href={`http://localhost:4000/a5/add/${a}/${b}`}>
+      <a href={`${API_BASE}/a5/add/${a}/${b}`}>
         Add {a} + {b}
       </a>
       <a href={`http://localhost:4000/a5/subtract/${a}/${b}`}>
