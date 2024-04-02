@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { setModule } from "../../Kanbas/Courses/Modules/reducer";
 
+const API_BASE = process.env.REACT_APP_API_BASE;
+
 function WorkingWithObjects() {
   const [assignment, setAssignment] = useState({
     id: 1, title: "NodeJS Assignment",
@@ -13,7 +15,7 @@ function WorkingWithObjects() {
     description: "Testing this module", course: "Sample Course"
   });
 
-  const ASSIGNMENT_URL = "http://localhost:4000/a5/assignment"
+  const ASSIGNMENT_URL = `${API_BASE}/a5/assignment`
   const fetchAssignment = async () => {
     const response = await axios.get(`${ASSIGNMENT_URL}`);
     setAssignment(response.data);
@@ -59,23 +61,23 @@ function WorkingWithObjects() {
         })}
         value={assignment.score} />
       <h4>Retrieving Objects</h4>
-      <a href="http://localhost:4000/a5/assignment">
+      <a href={`${API_BASE}/a5/assignment`}>
         Get Assignment
       </a>
       <h4>Retrieving Properties</h4>
-      <a href="http://localhost:4000/a5/assignment/title">
+      <a href={`${API_BASE}/a5/assignment/title`}>
         Get Title
       </a>
       <h4>Retrieving Properties</h4>
-      <a href={"http://localhost:4000/a5/module"}>
+      <a href={`${API_BASE}/a5/module`}>
         Get Module
       </a>
       <h4>Retrieving Properties</h4>
-      <a href={"http://localhost:4000/a5/module.name"}>
+      <a href={`${API_BASE}/a5/module.name`}>
         Get Module Name
       </a>
       <h4>Modifying Properties</h4>
-      <a href={`http://localhost:4000/a5/module/name/${module.name}`}>
+      <a href={`${API_BASE}/a5/module/name/${module.name}`}>
         Update Module Name
       </a>
       <input type="text"
@@ -84,7 +86,7 @@ function WorkingWithObjects() {
           name: e.target.value
         })}
         value={module.name} /><br />
-      <a href={`http://localhost:4000/a5/module/description/${module.description}`}>
+      <a href={`${API_BASE}/a5/module/description/${module.description}`}>
         Update Module Description
       </a>
       <input type="text"
