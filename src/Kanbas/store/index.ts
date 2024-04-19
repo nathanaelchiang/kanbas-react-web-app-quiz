@@ -1,16 +1,23 @@
 import { configureStore } from "@reduxjs/toolkit";
-import modulesReducer from "../Courses/Modules/reducer";
+import quizzesReducer from "../Courses/Quizzes/reducer";
+
 export interface KanbasState {
-  modulesReducer: {
-    modules: any[];
-    module: any;
+  quizzesReducer: {
+    quizzes: any[];
+    quiz: any;
   };
+  
+  // placeholder, to be removed---question reducer
+  questionsReducer: {
+    questions: any[];
+    question: any;
+  };
+
 }
 const store = configureStore({
   reducer: {
-    modulesReducer
+    quizzesReducer,
   }
 });
-
 
 export default store;

@@ -1,0 +1,45 @@
+[{
+  "id": "q2",
+  "quizTitle": "Quiz 2 test",
+  "quizDesc": "A quiz covering basic web terms.",
+  "quizType": "GradedQuiz",
+  "quizPoints": 100,
+  "assignmentGroup": "Quizzes",
+  "shuffleAnswers": true,
+  "timeLimit": 30,
+  "multipleAttempts": true,
+  "showCorrectAnswers": true,
+  "accessCode": "test111",
+  "oneQuestionPerTime": true,
+  "webcamRequired": false,
+  "lockQuestions": false,
+  "quizDueDate": "2024-05-30T00:00:00.000Z",
+  "quizStartDate": "2024-05-01T00:00:00.000Z",
+  "quizUntilDate": "2024-06-01T00:00:00.000Z",
+  "isPublished": true,
+  "questions": [
+    {
+      "questionType": "MultipleChoice",
+      "questionTitle": "Question 1",
+      "questionPoints": 10,
+      "questionBody": "What is html?",
+      "correctAnswer": "Hyper Text Markup Language",
+      "possibleAnswers": [
+        "Hyper Text Markup Language",
+        "Hyper Text Machine Language"
+      ]
+    },
+    {
+      "questionType": "TrueFalse",
+      "questionTitle": "Question 2",
+      "questionPoints": 10,
+      "questionBody": "Is React for frontend?",
+      "correctAnswer": "True",
+      "possibleAnswers": [
+        "True",
+        "False"
+      ]
+    }
+  ],
+  "course": "RS101"
+}]

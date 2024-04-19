@@ -1,0 +1,99 @@
+[
+    {
+      "_id": "M101",
+      "title": "Introduction to Rocket Propulsion",
+      "body": "Basic principles of rocket propulsion and rocket engines.",
+      "course": "RS101",
+      "type": "multi-choice",
+      "points": 20,
+      "answers": [
+        {
+          "_id": "A",
+          "text": "True",
+          "correct": true
+        },
+        {
+          "_id": "B",
+          "text": "False",
+          "correct": false
+        }
+      ]
+
+    },
+    {
+      "_id": "M102",
+      "title": "Fuel and Combustion",
+      "body": "Understanding rocket fuel, combustion processes, and efficiency.",
+      "course": "RS101",
+      "type": "true-false",
+      "points": 10,
+      "answers": [
+        {
+          "_id": "A",
+          "text": "True",
+          "correct": true
+        },
+        {
+          "_id": "B",
+          "text": "False",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "_id": "M103",
+      "title": "Nozzle Design",
+      "body": "Principles of rocket nozzle design and performance optimization.",
+      "course": "RS101",
+      "type": "true-false",
+      "points": 10,
+      "answers": [
+        {
+          "_id": "A",
+          "text": "True",
+          "correct": true
+        },
+        {
+          "_id": "B",
+          "text": "False",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "_id": "M201",
+      "title": "Fundamentals of Aerodynamics",
+      "body": "Basic aerodynamic concepoints and fluid dynamics principles.",
+      "course": "RS102"
+    },
+    {
+      "_id": "M202",
+      "title": "Subsonic and Supersonic Flow",
+      "body": "Understanding subsonic and supersonic aerodynamic behaviors.",
+      "course": "RS102"
+    },
+    {
+      "_id": "M203",
+      "title": "Aerodynamic Heating",
+      "body": "Study of aerodynamic heating and thermal protection systems.",
+      "course": "RS102"
+    },
+    {
+      "_id": "M301",
+      "title": "Spacecraft Structural Design",
+      "body": "Fundamentals of designing spacecraft structures and materials selection.",
+      "course": "RS103"
+    },
+    {
+      "_id": "M302",
+      "title": "Orbital Mechanics",
+      "body": "Understanding orbital dynamics and mission planning.",
+      "course": "RS103"
+    },
+    {
+      "_id": "M303",
+      "title": "Spacecraft Systems Engineering",
+      "body": "Overview of spacecraft systems and subsystems engineering.",
+      "course": "RS103"
+    }
+  ]
