@@ -1,0 +1,14 @@
+.quiz-detail-table{
+    border: none;
+    table-layout: fixed; 
+}
+
+.quiz-detail-table th{
+    text-align: end;
+}
+
+.quiz-detail-table th,
+.quiz-detail-table td {
+  border: none;
+  width: 50%;
+}
