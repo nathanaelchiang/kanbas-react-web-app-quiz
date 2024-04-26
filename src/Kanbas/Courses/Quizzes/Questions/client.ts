@@ -4,17 +4,6 @@ const Quizzes_API = 'http://localhost:5000/api/Quizzes';
 const COURSES_API = 'http://localhost:5000/api/Courses';
 const QUESTIONS_API = 'http://localhost:5000/api/Questions';
 
-
-export const findAllQuestions = async () => {
-    const response = await axios.get(QUESTIONS_API);
-    return response.data;
-};
-
-export const findQuestionById = async (questionId: any) => {
-    const response = await axios.get(`${QUESTIONS_API}/${questionId}`);
-    return response.data;
-};
-
 export const updateQuestion = async (question: any) => {
     console.log("updateQuestion", question);
     const response = await axios.
@@ -33,5 +22,15 @@ export const createQuestion = async (quizId: any, question: any) => {
         `${Quizzes_API}/${quizId}/questions`,
         question
     );
+    return response.data;
+};
+
+export const findAllQuestions = async () => {
+    const response = await axios.get(QUESTIONS_API);
+    return response.data;
+};
+
+export const findQuestionById = async (questionId: any) => {
+    const response = await axios.get(`${QUESTIONS_API}/${questionId}`);
     return response.data;
 };

@@ -8,39 +8,49 @@ export interface Question {
   questionBody: string;
   correctAnswer: string;
   possibleAnswers: string[];
-  answers: string[];
+  answers: Answer[];
 }
 
+export interface Answer {
+  _id?: string;
+  answer: string;
+  isCorrect: boolean;
+  
+}
 export interface Quiz {
   _id?: string;
   id: string;
   quizTitle: string;
   quizDesc: string;
   quizType: 'GradedQuiz' | 'PracticeQuiz' | 'GradedSurvey' | 'UngradedSurvey';
-  quizPoints: number;
   assignmentGroup: 'Quizzes' | 'Exams' | 'Assignments' | 'Project';
   shuffleAnswers: boolean;
   timeLimit: number;
   multipleAttempts: boolean;
-  showCorrectAnswers: boolean;
+  showCorrectAnswers: 'Immediately' | 'AfterDueDate' | 'Never';
   accessCode: string;
   oneQuestionPerTime: boolean;
   webcamRequired: boolean;
   lockQuestions: boolean;
-  quizDueDate: Date;
-  quizStartDate: Date;
-  quizUntilDate: Date;
+  quizDueDate: Date | null;
+  quizStartDate: Date | null;
+  quizUntilDate: Date | null;
   isPublished: boolean;
   questions: Question[];
   course: string;
 }
 
+
+
 interface QuizState {
   quizzes: Quiz[];
   quiz: Quiz;
 
-  // questions: Question[];
-  // question: Question;
+  questions: Question[];
+  question: Question;
+
+  answers: string[];
+  answer: string;
 }
 
 const initialState: QuizState = {
@@ -51,12 +61,11 @@ const initialState: QuizState = {
     quizTitle: "",
     quizDesc: "",
     quizType: "GradedQuiz",
-    quizPoints: 0,
     assignmentGroup: "Quizzes",
     shuffleAnswers: false,
     timeLimit: 0,
     multipleAttempts: false,
-    showCorrectAnswers: false,
+    showCorrectAnswers: "Immediately",
     accessCode: "",
     oneQuestionPerTime: false,
     webcamRequired: false,
@@ -68,15 +77,19 @@ const initialState: QuizState = {
     questions: [],
     course: "",
   },
-  // questions: [],
-  // question: {
-  //   questionType: 'MultipleChoice',
-  //   questionTitle: '',
-  //   questionPoints: 10,
-  //   questionBody: '',
-  //   correctAnswer: '',
-  //   possibleAnswers: [],
-  // }
+  questions: [],
+  question: {
+    questionType: 'MultipleChoice',
+    questionTitle: '',
+    questionPoints: 10,
+    questionBody: '',
+    correctAnswer: '',
+    possibleAnswers: [],
+    answers: [],
+  },
+  answers: [],
+  answer: '',
+
 };
 
 const quizzesSlice = createSlice({
@@ -86,30 +99,56 @@ const quizzesSlice = createSlice({
     setQuizzes: (state, action) => {
       state.quizzes = action.payload;
     },
+    // setQuiz: (state, action) => {
+    //   state.quiz = action.payload;
+    // },
+
     setQuiz: (state, action) => {
-      state.quiz = action.payload;
+      return {
+        ...state,
+        quiz: {...action.payload},
+      };
     },
+
     addQuiz: (state, action) => {
       state.quizzes = [action.payload, ...state.quizzes];
       state.quiz = action.payload;
     },
     deleteQuiz: (state, action) => {
       state.quizzes = state.quizzes.filter(
-        (quiz) => quiz._id !== action.payload
+        (quiz) => quiz.id !== action.payload
       );
-      if (state.quiz._id === action.payload) {
+      if (state.quiz.id === action.payload) {
         state.quiz = initialState.quiz;
       }
     },
+
+
+      // updateQuiz: (state, action) => {
+    //   state.quizzes = state.quizzes.map((quiz) => {
+    //     if (quiz._id === action.payload._id) {
+    //         return action.payload;
+    //       } else {
+    //         return quiz;
+    //       }
+    //     });
+    //   },
+
     updateQuiz: (state, action) => {
-      state.quizzes = state.quizzes.map((quiz) => {
-        if (quiz._id === action.payload._id) {
+
+      return {
+        ...state,
+        quizzes: state.quizzes.map((quiz : Quiz) => {
+          if (quiz.id === action.payload.id) {
             return action.payload;
           } else {
             return quiz;
           }
-        });
-      },
+        })
+      };
+
+    },
+
 
 
     addQuestion: (state, action) => {
@@ -154,6 +193,26 @@ const quizzesSlice = createSlice({
       state.quiz.questions = action.payload;
     },
 
+    
+    addAnswer: (state, action) => {
+      const { question } = state;
+      console.log("question", question);
+      question.possibleAnswers = [...question.possibleAnswers, action.payload];
+    },
+
+    setAnswer: (state, action) => {
+      state.answer = action.payload;
+    },
+    removeAnswer: (state, action) => {
+      const { question } = state;
+      question.possibleAnswers = question.possibleAnswers.filter((answer) => answer !== action.payload);
+    },
+
+    updateAnswer: (state, action) => {
+      const { question } = state;
+      question.possibleAnswers = question.possibleAnswers.map((answer) =>
+        answer === action.payload.oldAnswer ? action.payload.newAnswer : answer      );
+    },
   },
 });
   
@@ -166,7 +225,11 @@ export const {
   addQuestion,
   updateQuestion,
   deleteQuestion,
-  setQuestions
+  setQuestions,
+  addAnswer,
+  setAnswer,
+  removeAnswer,
+  updateAnswer,
 } = quizzesSlice.actions;
 export default quizzesSlice.reducer;
 

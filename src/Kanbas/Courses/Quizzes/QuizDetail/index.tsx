@@ -4,58 +4,78 @@ import { useNavigate, useParams } from "react-router-dom";
 import { FaEllipsisV, FaCheckCircle, FaBan, FaPen } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { KanbasState } from "../../../store";
-import { setQuiz } from "../reducer";
+import { Question, setQuiz } from "../reducer";
 import * as client from "../client";
 
 function QuizDetail() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const quiz = useSelector((state: KanbasState) => state.quizzesReducer.quiz);
-  const [published, setPublished] = useState(quiz.published);
 
+  const { courseId, quizId } = useParams();
 
-  const { quizId } = useParams();
+  const calculateQuizPoints = () => {
+    let totalPoints = 0;
+    quiz.questions.forEach((question: Question) => {
+      totalPoints += question.questionPoints;
+    });
+    return totalPoints;
+  };
+
+  const handlePublish = () => {
+    const newPublishedState = !quiz.isPublished;
+    client.updateQuiz({ ...quiz, isPublished: newPublishedState });
+    dispatch(setQuiz({ ...quiz, isPublished: newPublishedState }));
+  };
+
   useEffect(() => {
-    if (quizId) {
+    if (quizId && quizId !== quiz._id) {
       const fetchQuestions = async () => {
         try {
           const fetchedQuiz = await client.findQuizbyId(quizId);
           dispatch(setQuiz(fetchedQuiz));
         } catch (error) {
           console.error("Failed to fetch questions:", error);
+          // setLoading(false);
         }
       };
 
       fetchQuestions();
     }
-  }, [quizId, dispatch]);
+  }, [dispatch]);
 
   return (
     <div>
+      {/* top bar for quiz detail */}
       <div className="d-flex justify-content-end gap-1">
         <button
           className="btn btn-success d-flex align-items-center"
-          onClick={() => setPublished(!published)}
+          onClick={handlePublish}
+          title={quiz.isPublished ? "Click to Unpublish" : "Click to Publish"}
         >
-          {published ? (
+          {quiz.isPublished ? (
             <>
-              <FaBan className="me-1" /> Unpublished
+              <FaCheckCircle className="me-1" /> Published
             </>
           ) : (
             <>
-              <FaCheckCircle /> Published
+              <FaBan className="me-1" /> Unpublished
             </>
           )}
         </button>
         <button
           className="btn border"
-          onClick={() => navigate(`/Kanbas/Courses/RS101/Quizzes/q1/Preview`)}
+          onClick={() =>
+            navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quizId}/Preview`)
+          }
         >
           Preview
         </button>
         <button
           className="btn border d-flex align-items-center"
-          onClick={() => navigate(`/Kanbas/Courses/RS101/Quizzes/q1/Edit`)}
+          onClick={() => {
+            navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quizId}/Edit`);
+          }}
         >
           <FaPen className="me-1" /> Edit
         </button>
@@ -67,6 +87,7 @@ function QuizDetail() {
 
       <h2>{quiz.quizTitle}</h2>
 
+      {/* quiz detail table */}
       <table className="table quiz-detail-table">
         <tbody>
           <tr>
@@ -75,7 +96,7 @@ function QuizDetail() {
           </tr>
           <tr>
             <th>Points</th>
-            <td>{quiz.quizPoints}</td>
+            <td>{calculateQuizPoints()}</td>
           </tr>
           <tr>
             <th>Assignment Group</th>
@@ -102,6 +123,10 @@ function QuizDetail() {
             <td>{quiz.showCorrectAnswers}</td>
           </tr>
           <tr>
+            <th>Access Code</th>
+            <td>{quiz.accessCode === "" ? "None" : quiz.accessCode}</td>
+          </tr>
+          <tr>
             <th>One Question at a Time</th>
             <td>{quiz.oneQuestionPerTime ? "Yes" : "No"}</td>
           </tr>
@@ -124,6 +149,7 @@ function QuizDetail() {
         </tbody>
       </table>
 
+      {/* quiz schedule table */}
       <table className="table ms-3">
         <thead>
           <tr>
@@ -172,6 +198,3 @@ function QuizDetail() {
 }
 
 export default QuizDetail;
-function dispatch(arg0: { payload: any; type: "quizzes/setQuestions" }) {
-  throw new Error("Function not implemented.");
-}

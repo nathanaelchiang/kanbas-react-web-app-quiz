@@ -1,6 +1,6 @@
 [{
-  "id": "q2",
-  "quizTitle": "Quiz 2 test",
+  "id": "q3",
+  "quizTitle": "Quiz 3 test",
   "quizDesc": "A quiz covering basic web terms.",
   "quizType": "GradedQuiz",
   "quizPoints": 100,
@@ -8,7 +8,7 @@
   "shuffleAnswers": true,
   "timeLimit": 30,
   "multipleAttempts": true,
-  "showCorrectAnswers": true,
+  "showCorrectAnswers": "Immediately",
   "accessCode": "test111",
   "oneQuestionPerTime": true,
   "webcamRequired": false,
@@ -32,6 +32,50 @@
     {
       "questionType": "TrueFalse",
       "questionTitle": "Question 2",
+      "questionPoints": 10,
+      "questionBody": "Is React for frontend?",
+      "correctAnswer": "True",
+      "possibleAnswers": [
+        "True",
+        "False"
+      ]
+    },
+    {
+      "questionType": "MultipleChoice",
+      "questionTitle": "Question 3",
+      "questionPoints": 10,
+      "questionBody": "What is css?",
+      "correctAnswer": "Cascading Style Sheets",
+      "possibleAnswers": [
+        "Cascading Style Sheets",
+        "Cascading Style Script"
+      ]
+    },
+    {
+      "questionType": "MultipleChoice",
+      "questionTitle": "Question 4",
+      "questionPoints": 10,
+      "questionBody": "What is javascript?",
+      "correctAnswer": "A programming language",
+      "possibleAnswers": [
+        "A programming language",
+        "A markup language"
+      ]
+    },
+    {
+      "questionType": "MultipleChoice",
+      "questionTitle": "Question 5",
+      "questionPoints": 10,
+      "questionBody": "What is a browser?",
+      "correctAnswer": "A software application",
+      "possibleAnswers": [
+        "A software application",
+        "A hardware device"
+      ]
+    },
+    {
+      "questionType": "TrueFalse",
+      "questionTitle": "Question 6",
       "questionPoints": 10,
       "questionBody": "Is React for frontend?",
       "correctAnswer": "True",

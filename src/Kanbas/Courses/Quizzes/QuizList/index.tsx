@@ -1,4 +1,4 @@
-import QuizListCard from "../QuizListCard";
+import QuizListCard from "./QuizListCard";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import * as client from "../client";
@@ -19,17 +19,16 @@ function QuizList() {
       const fetchQuizzes = async () => {
         try {
           const fetchedQuizzes = await client.findAllQuizzes(courseId);
-          console.log("courseId", courseId);
-          console.log("fetchedQuizzes", fetchedQuizzes);
           dispatch(setQuizzes(fetchedQuizzes));
         } catch (error) {
-          console.error("Failed to get quizzes - ", error);
+          console.error("Failed to fetch quizzes:", error);
         }
       };
-
       fetchQuizzes();
+      console.log("useEffect");
     }
-  }, [courseId, dispatch]);
+    // }, [courseId, dispatch]);
+  }, []);
 
   return (
     <div>

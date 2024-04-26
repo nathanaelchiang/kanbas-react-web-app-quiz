@@ -1,0 +1,62 @@
+.course-status-list {
+    width: 250px;
+    list-style: none;
+    padding: 10px 0;
+  }
+  .status-item {
+    padding: 5px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+  }
+  .status-item i {
+    margin-right: 8px;
+  }
+
+  .coming-up-container i{
+    color:black;
+    margin-top: 5px;
+  }
+
+  .coming-up-container li{
+    list-style: none;
+  }
+
+  .coming-up-container a{
+    color: red;
+  }
+
+  .coming-up-container p{
+    color: grey;
+  }
+
+  .coming-up-container .row .left-col {
+    width: 5px;
+    flex: 0 0 5px; 
+  }
+  
+  .coming-up-container .row .right-col {
+    width: 50px;
+    flex: 0 0 200px; 
+    word-wrap: break-word;
+  }
+
+  #view-calendar-button{
+    color:red;
+    text-decoration: none;
+  }
+
+  .row.top-align {
+    align-items: flex-start; 
+  }
+
+  .published-button{
+    background-color: green;
+    color: white;
+  }
+
+
+  

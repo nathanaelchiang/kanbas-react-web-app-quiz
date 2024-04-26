@@ -7,33 +7,8 @@ export const QUIZZES_API = `${BASE_API}/api/quizzes`;
 
 const newAxios = axios.create({ withCredentials: true });
 
-export const updateQuestion = async (quizId: string, question: Question) => {
-  const response = await newAxios.put(`${QUIZZES_API}/${quizId}/questions/${question._id}`, question);
-  return response.data;
-};
-
-export const deleteQuestion = async (quizId: string, questionId: string) => {
-  const response = await newAxios.delete(`${QUIZZES_API}/${quizId}/questions/${questionId}`);
-  return response.data;
-};
-
-export const addQuestion = async (quizId: string, question: Question) => {
-  const response = await newAxios.post(`${QUIZZES_API}/${quizId}/questions`, question);
-  return response.data;
-};
-
-export const findQuestionsOfQuiz = async (quizId: string) => {
-  const response = await newAxios.get(`${QUIZZES_API}/${quizId}/questions`);
-  return response.data;
-};
-
-export const findQuestionById = async (quizId: string, questionId: string) => {
-    const response = await newAxios.get(`${QUIZZES_API}/${quizId}/questions/${questionId}`);
-    return response.data;
-};
-
 export const updateQuiz = async (quiz: Quiz) => {
-  const response = await newAxios.put(`${QUIZZES_API}/${quiz._id}`, quiz);
+  const response = await newAxios.put(`${QUIZZES_API}/${quiz.id}`, quiz);
   return response.data;
 };
 
@@ -57,3 +32,28 @@ export const findQuizbyId = async (quizId: string) => {
     return response.data;
 };
 
+// Question API
+export const addQuestion = async (quizId: string, question: Question) => {
+  const response = await newAxios.post(`${QUIZZES_API}/${quizId}/questions`, question);
+  return response.data;
+};
+
+export const findQuestionsOfQuiz = async (quizId: string) => {
+  const response = await newAxios.get(`${QUIZZES_API}/${quizId}/questions`);
+  return response.data;
+};
+
+export const findQuestionById = async (quizId: string, questionId: string) => {
+    const response = await newAxios.get(`${QUIZZES_API}/${quizId}/questions/${questionId}`);
+    return response.data;
+};
+
+export const updateQuestion = async (quizId: string, questionIndex: number, question: Question) => {
+  const response = await newAxios.put(`${QUIZZES_API}/${quizId}/questions/${questionIndex}`, question);
+  return response.data;
+};
+
+export const deleteQuestion = async (quizId: string, questionIndex: number) => {
+  const response = await newAxios.delete(`${QUIZZES_API}/${quizId}/questions/${questionIndex}`);
+  return response.data;
+};

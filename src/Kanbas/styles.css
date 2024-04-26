@@ -10,32 +10,33 @@ body {
   background-color: red;
   border: 1px solid gray !important;
   border-left: none !important;
-  color: white; 
-  border-radius: 5px; 
+  color: white; /* Add this if you want the text color to be white */
+  border-radius: 5px; /* Add this to make the corners round */
 }
 
+/* green button */
 .green-button {
   background-color: green;
   border: 1px solid gray !important;
   border-left: none !important;
-  color: white; 
-  border-radius: 5px; 
+  color: white; /* Add this if you want the text color to be white */
+  border-radius: 5px; /* Add this to make the corners round */
 }
 
 .gray-button {
   background-color: lightgray;
   border: 1px solid gray !important;
   border-left: none !important;
-  color: black; 
+  color: black; /* Add this if you want the text color to be black */
 }
 
-
+/* blue button */
 .blue-button {
   background-color: blue;
   border: 1px solid gray !important;
   border-left: none !important;
-  color: white; 
-  border-radius: 5px; 
+  color: white; /* Add this if you want the text color to be white */
+  border-radius: 5px; /* Add this to make the corners round */
 }
 
 

@@ -6,17 +6,12 @@ import {
   Navigate,
 } from "react-router-dom";
 import Kanbas from "./Kanbas";
-import HomePage from "./Kanbas";
-import Quizzes from "./Kanbas/Courses/Quizzes";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route
-          path="/"
-          element={<Navigate to="/Kanbas/Courses/RS101/Quizzes" />}
-        />
+        <Route path="/" element={<Navigate to="/Kanbas/Account" />} />
         <Route path="/Kanbas/*" element={<Kanbas />} />
       </Routes>
     </Router>

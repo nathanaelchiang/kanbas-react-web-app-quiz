@@ -1,0 +1,153 @@
+.canvas-quiz-preview {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+
+  .quiz-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+
+  
+  .question {
+    margin-bottom: 15px;
+  }
+  
+  .question h3 {
+    margin-top: 0;
+  }
+  
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  
+  ul li {
+    margin-bottom: 5px;
+  }
+  
+
+  button {
+    background-color: #c4c5c7;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #e3e5e6;
+  }
+
+  .preview-warning {
+    background-color: #f7d1d1;
+    color: #990000;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+/* styles.css */
+
+/* Define custom styles for the Next and Previous buttons */
+.navigation-buttons button {
+    background-color: rgb(208, 203, 203); /* Set the background color to grey */
+    color: white; /* Set the text color to white */
+    border: none; /* Remove the border */
+    /* padding: 8px 16px; Add padding for better appearance */
+    margin: 0 4px; /* Add margin for spacing between buttons */
+  }
+
+  
+  .navigation-buttons button:hover {
+    background-color: rgb(194, 190, 190); /* Change the background color on hover */
+  }
+  
+  .navigation-buttons {
+    text-align: right; /* Align buttons to the right */
+  }
+  
+  .submit-button {
+    margin-right: 10px; /* Add some margin between buttons */
+  }
+  
+
+  .canvas-quiz-preview {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    /* border: 1px solid #ccc; */
+    border-radius: 5px;
+  }
+
+  
+  .quiz-wrapper {
+    padding: 10px;
+  }
+  
+  .preview-header {
+    margin-bottom: 20px;
+  }
+
+  .preview-warning {
+    font-style: italic;
+    color: #962b2b;
+  }
+
+  .started-time {
+    font-size: 0.9em;
+    color: #555;
+  }
+
+  .quiz-instructions {
+    margin-bottom: 20px;
+
+  }
+
+  
+  .question-card {
+    margin-bottom: 20px;
+  }
+  
+
+  .question-box-wrapper {
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  
+  .flag-button {
+    float: left;
+  }
+  
+  .question-header {
+    overflow: auto;
+  }
+  
+  .question {
+    margin-left: 50px; /* Adjust this value to create space between flag button and question */
+  }
+  
+  .question-body {
+    margin-bottom: 10px;
+  }
+  
+  .answer-options label {
+    margin-left: 5px;
+  }
+  
+  .navigation-buttons button {
+    margin-right: 10px;
+  }
+  
+  /* .submit-button {
+    margin-top: 20px;
+  } */
+  
+

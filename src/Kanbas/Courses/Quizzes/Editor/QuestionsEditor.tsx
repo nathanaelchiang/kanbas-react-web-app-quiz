@@ -3,76 +3,98 @@ import { FaSearch, FaPlus } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import QuestionDisplayCard from "./QuestionDisplayCard";
-import {
-  addQuiz,
-  deleteQuiz,
-  updateQuiz,
-  setQuiz,
-  setQuizzes,
-} from "../reducer";
+import { Question } from "../reducer";
 import { KanbasState } from "../../../store";
 import * as client from "../client";
 import QuestionEditCard from "./QuestionEditCard";
 
-export interface Question {
-  _id: string;
-  questionType: string;
-  questionTitle: string;
-  questionPoints: number;
-  questionBody: string;
-  correctanswer: string;
-  possibleAnswers: string[];
-}
+const defaultQuestion: Question = {
+  questionType: "MultipleChoice",
+  questionTitle: "Question Title",
+  questionPoints: 0,
+  questionBody: "",
+  correctAnswer: "",
+  possibleAnswers: [],
+  answers: [],
+};
 
 function QuizQuestionsEditor() {
   const { quizId } = useParams();
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [displayNewQuestion, setDisplayNewQuestion] = useState(false);
-  const [newQuestion, setNewQuestion] = useState(null);
-  const [questionList, setQuestionList] = useState<Question[]>([]);
+  const [showQuestionEditCard, setShowQuestionEditCard] = useState(false);
+  const [isCreateNewQuestion, setIsCreateNewQuestion] = useState(false);
+  const [currentQuestion, setCurrentQuestion] =
+    useState<Question>(defaultQuestion);
+
+  const questionList = useSelector(
+    (state: KanbasState) => state.quizzesReducer.quiz.questions
+  );
+  const quiz = useSelector((state: KanbasState) => state.quizzesReducer.quiz);
 
   const handleNewQuestionClick = () => {
-    if (!displayNewQuestion) {
-      setDisplayNewQuestion(true);
+    setIsCreateNewQuestion(true);
+    setCurrentQuestion(defaultQuestion);
+
+    if (!showQuestionEditCard) {
+      setShowQuestionEditCard(true);
     } else {
-      if (newQuestion) {
-        setDisplayNewQuestion(false);
-        setNewQuestion(null); 
-      }
+      window.alert(
+        "Please finish editing the current question first. Click cancel or udpate to continue."
+      );
     }
   };
 
-  useEffect(() => {
-    const fetchQuestions = async () => {
-      if (!quizId) return;
-      try {
-        const fetchedQuestions = await client.findQuestionsOfQuiz(quizId);
-        setQuestionList(fetchedQuestions);
-      } catch (error) {
-        console.error("Failed to fetch questions:", error);
-      }
-    };
+  const findQuestionIndex = (question: Question) => {
+    return quiz.questions.findIndex(
+      (eachQuestion: Question) => eachQuestion._id === question._id
+    );
+  };
 
-    fetchQuestions();
-  }, [quizId]);
+  // callback functions that hides or displays the QuestionEditCard
+  const hideEditCard = () => {
+    setShowQuestionEditCard(false);
+  };
+
+  const handleEditClick = (question: Question) => {
+    setIsCreateNewQuestion(false);
+    setCurrentQuestion(question);
+    setShowQuestionEditCard(true);
+  };
+
+  useEffect(() => {}, [questionList]);
 
   return (
     <div>
-
       <div>
         {questionList.length === 0 ? (
           <div style={{ height: "10em" }}></div>
         ) : (
           <ul>
             {questionList.map((question: Question) => (
-              <QuestionDisplayCard key={question._id} question={question} />
+              <QuestionDisplayCard
+                key={question._id}
+                question={question}
+                isShowQuestionEditCard={showQuestionEditCard}
+                onShow={() => handleEditClick(question)}
+              />
             ))}
           </ul>
         )}
       </div>
 
-      {displayNewQuestion && <QuestionEditCard />}
+      {/* if add new question button is clicked, or if edit-question button is clicked
+      then display a new block to show question-edit-card */}
+      {showQuestionEditCard && (
+        <QuestionEditCard
+          question={currentQuestion}
+          questionIndex={findQuestionIndex(currentQuestion)}
+          onHide={hideEditCard}
+          isCreateNewQuestion={isCreateNewQuestion}
+        />
+      )}
+
       <div className="d-flex justify-content-center gap-5 my-4">
         <button
           className="btn border d-flex align-items-center"
@@ -90,34 +112,6 @@ function QuizQuestionsEditor() {
           Questions
         </button>
       </div>
-      <hr />
-      <div className="d-flex align-items-center justify-content-between">
-        <label htmlFor="notifyUsers" className="">
-          <input type="checkbox" id="notifyUsers" name="notifyUsers" /> Notify
-          users this quiz has changed
-        </label>
-        <div>
-          <button
-            className="btn border ms-2"
-            onClick={() => navigate(`/Kanbas/Courses/1/Quizzes`)}
-          >
-            Cancel
-          </button>
-          <button
-            className="btn border ms-2"
-            onClick={() => navigate(`/Kanbas/Courses/1/Quizzes`)}
-          >
-            Save & Publish
-          </button>
-          <button
-            className="btn btn-danger ms-2"
-            onClick={() => navigate(`/Kanbas/Courses/1/Quizzes`)}
-          >
-            Save
-          </button>
-        </div>
-      </div>
-      <hr />
     </div>
   );
 }
